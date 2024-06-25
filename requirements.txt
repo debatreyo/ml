@@ -1,0 +1,6 @@
+# required libraries
+pandas
+numpy
+matplotlib
+seaborn
+-e .
