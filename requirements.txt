@@ -1,6 +1,11 @@
-# required libraries
+# requirements for data manipulation
 pandas
 numpy
+# requirements for data visualization
 matplotlib
 seaborn
--e .
+# requirements for machine learning
+scikit-learn
+xgboost
+catboost
+# -e .
