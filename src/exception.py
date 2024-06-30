@@ -10,12 +10,22 @@ def error_message_detail(error:str, error_detail:sys):
     Returns a custom error message
     that can be shown to the user for
     debugging purpose.
+
+    Input Parameters ->
+    `error`: (str) The exception message
+            Example: `e` in `except Exception as e:` of try-except block
+    `error_detail`: sys
     """
     # sys.exc_info() returns ->
     # Exception type,
     # Exception value,
     # Traceback object (point where the exception last occured)
-    
+
+
+    # sys.exc_info() -> exception_type, exception, exception_traceback
+    # exception_type, exception, exception_traceback -> exception_line_num (.tb_lineno) & execution_frame (.tb_frame)
+    # execution_frame -> code_object (.f_code)
+    # code_object -> file_name (.co_filename)
     _, _, exc_traceback = error_detail.exc_info()
 
     # python file name where exception was raised
