@@ -12,6 +12,10 @@ from sklearn.model_selection import train_test_split
 # for defining class variables
 from dataclasses import dataclass
 
+# for data transformation
+from src.components.data_transformation import DataTransformationConfig
+from src.components.data_transformation import DataTransformation
+
 
 # DATA INGESTION CONFIG
 @dataclass
@@ -97,7 +101,16 @@ if __name__ == "__main__":
     # create data ingestion object
     data_ingestion_object = DataIngestion()
     # initiate data ingestion process
-    data_ingestion_object.initiate_data_ingestion()
-
+    train_data_path, test_data_path = data_ingestion_object.initiate_data_ingestion()
     # once this gets executed the `artifact` folder will get created
     # and inside it `raw.csv`, `train.csv`, and `test.csv` will be saved
+
+    # create data transformation object
+    data_transformation_object = DataTransformation()
+    # initiate data transformation process
+    # to get the transformed training set array, test set array,
+    # and the data preprocessor object's local file path (not needed right now)
+    train_array, test_array, _ = data_transformation_object.initiate_data_transformation(
+        train_path=train_data_path,
+        test_path=test_data_path
+    )

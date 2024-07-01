@@ -8,4 +8,6 @@ seaborn
 scikit-learn
 xgboost
 catboost
+# requirements for other functionalities
+dill
 # -e .
