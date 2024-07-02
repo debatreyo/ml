@@ -10,6 +10,8 @@ import pandas as pd
 import numpy as np
 # for machine learning model evaluation
 from sklearn.metrics import mean_squared_error, mean_absolute_error, r2_score
+# for hyperparameter tuning
+from sklearn.model_selection import GridSearchCV
 # for saving objects
 import dill
 
@@ -44,7 +46,8 @@ def save_object(file_path:str, obj):
 # utility function 2
 def evaluate_model(X_train, y_train,
                    X_test, y_test,
-                   models:dict):
+                   models:dict, params:dict,
+                   cv=3):
     """
     Trains the input machine learning models,
     evaluates its performance on Test set
@@ -58,7 +61,11 @@ def evaluate_model(X_train, y_train,
     X_test, y_test: (array) Test set
     models: (dict) contains machine learning models to be evaluated.
             key: model name (str)
-            value: model instance (untrained) 
+            value: model instance (untrained)
+    params: (dict) contains parameters to try out during
+            hyperparameter tuning using Grid search CV.
+            key: model name (str)
+            value: (dict) parameter grid
     """
     try:
         # for storing the evaluation scores for each model
@@ -71,6 +78,21 @@ def evaluate_model(X_train, y_train,
         for i in range(len(models_names)):
             # get the model object
             model = models_objects[i]
+
+            # get parameter grid
+            parameter_grid = params[models_names[i]]
+
+            # create grid search cv object
+            gs = GridSearchCV(estimator=model, param_grid=parameter_grid,
+                              cv=cv, verbose=False)
+            # fit to training set to find best hyperparameter values
+            gs.fit(X_train, y_train)
+
+            # get best parameter values' dict
+            best_parameters:dict = gs.best_params_
+            
+            # set model's parameters to the values found by Grid search
+            model.set_params(**best_parameters)
 
             # fit model to training set
             model.fit(X_train, y_train)

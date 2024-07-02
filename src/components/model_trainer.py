@@ -71,14 +71,48 @@ class ModelTrainer:
                 "XGB Regressor":XGBRegressor()
             }
             # declare parameters grid for performing grid search
-
+            parameters={
+                "Linear Regression":{},
+                "Decision Tree":{
+                    'criterion':['squared_error', 'friedman_mse', 'absolute_error', 'poisson'],
+                    # 'splitter':['best','random'],
+                    # 'max_features':['sqrt','log2'],
+                },
+                "KNN Regressor":{
+                    'n_neighbors':[5,7,9,11],
+                    # 'weights':['uniform', 'distance'],
+                    # 'algorithm':['ball_tree', 'kd_tree', 'brute']
+                },
+                "Ada Boost Regressor":{
+                    'learning_rate':[.1,.01,0.5,.001],
+                    # 'loss':['linear','square','exponential'],
+                    'n_estimators': [8,16,32,64,128,256]
+                },
+                "Gradient Boost Regressor":{
+                    # 'loss':['squared_error', 'huber', 'absolute_error', 'quantile'],
+                    'learning_rate':[.1,.01,.05,.001],
+                    'subsample':[0.6,0.7,0.75,0.8,0.85,0.9],
+                    # 'criterion':['squared_error', 'friedman_mse'],
+                    # 'max_features':['auto','sqrt','log2'],
+                    'n_estimators': [8,16,32,64,128,256]
+                },
+                "Random Forest Regressor":{
+                    # 'criterion':['squared_error', 'friedman_mse', 'absolute_error', 'poisson'],
+                    # 'max_features':['sqrt','log2',None],
+                    'n_estimators': [8,16,32,64,128,256]
+                },
+                "XGB Regressor":{
+                    'learning_rate':[.1,.01,.05,.001],
+                    'n_estimators': [8,16,32,64,128,256]
+                }
+            }
 
             # evaluate model
             logging.info(msg="Model training and evaluation initiated")
 
             model_report:dict = evaluate_model(X_train=X_train, y_train=y_train,
                                                X_test=X_test, y_test=y_test,
-                                               models=models)
+                                               models=models, params=parameters)
             logging.info(msg="Model training and evaluation completed successfully")
             
             # extract model with best r2 score on test set
