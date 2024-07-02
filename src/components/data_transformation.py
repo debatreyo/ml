@@ -29,7 +29,7 @@ class DataTransformationConfig:
     in the Machine Learning pipeline.
     """
     # path for storing the final data processor pipeline object (`.pkl` file)
-    preprocessor_object_file_path = os.path.join("artifact", "preprocessor.pkl") ## \artifact\preprocessor.pkl
+    preprocessor_object_file_path:str = os.path.join("artifact", "preprocessor.pkl") ## \artifact\preprocessor.pkl
 
 
 # DATA TRANSFORMATION
@@ -162,17 +162,6 @@ class DataTransformation:
                 train_array, test_array,
                 self.data_transformation_config.preprocessor_object_file_path
             )
-
-            
-             
-
-            
-
-            
-
-            
-            
-
             
 
         except Exception as e:

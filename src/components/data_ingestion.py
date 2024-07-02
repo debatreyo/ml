@@ -15,7 +15,7 @@ from dataclasses import dataclass
 # for data transformation
 from src.components.data_transformation import DataTransformationConfig
 from src.components.data_transformation import DataTransformation
-
+from src.components.model_trainer import ModelTrainer
 
 # DATA INGESTION CONFIG
 @dataclass
@@ -26,13 +26,13 @@ class DataIngestionConfig:
     Machine Learning pipeline.
     """
     # path for storing the raw data
-    raw_data_path: str=os.path.join("artifact", "raw.csv") # "\artifact\raw.csv"
+    raw_data_path: str = os.path.join("artifact", "raw.csv") # "\artifact\raw.csv"
     
     # path for storing the training data
-    train_data_path: str=os.path.join("artifact", "train.csv") # "\artifact\train.csv"
+    train_data_path: str = os.path.join("artifact", "train.csv") # "\artifact\train.csv"
 
     # path for storing the test data
-    test_data_path: str=os.path.join("artifact", "test.csv") # "\artifact\test.csv"
+    test_data_path: str = os.path.join("artifact", "test.csv") # "\artifact\test.csv"
 
 
 # DATA INGESTION
@@ -114,3 +114,11 @@ if __name__ == "__main__":
         train_path=train_data_path,
         test_path=test_data_path
     )
+
+    # create model trainer object
+    model_trainer = ModelTrainer()
+    # initiate training and evaluation
+    model_name, model_r2_score = model_trainer.initiate_model_trainer(train_array=train_array,
+                                                          test_array=test_array)
+    # print r2 score
+    print(f"R^2 Score of trained {model_name} model: {model_r2_score:.3f}")
