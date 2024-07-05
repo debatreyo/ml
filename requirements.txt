@@ -12,4 +12,4 @@ catboost
 flask
 # requirements for other functionalities
 dill
-# -e .
+-e .
