@@ -33,7 +33,7 @@ def save_object(file_path:str, obj):
         # create directory if it does not exist already
         os.makedirs(dir_path, exist_ok=True)
 
-        # save the object
+        # save the object (write byte mode)
         with open(file_path, "wb") as file_object:
             dill.dump(obj, file_object)
 
@@ -110,6 +110,26 @@ def evaluate_model(X_train, y_train,
 
         return report
           
+
+    except Exception as e:
+        raise CustomException(error_message=e, error_detail=sys)
+
+
+# utility function 3
+def load_object(file_path):
+    """
+    Generic utility function for
+    loading various data objects
+    in the input file path.
+
+    Input Parameters ->
+    `file_path`: (str) The relative path
+                where object to be loaded exists
+    """
+    try:
+        # load object (read byte mode)
+        with open(file_path, "rb") as file_object:
+            return dill.load(file_object)
 
     except Exception as e:
         raise CustomException(error_message=e, error_detail=sys)

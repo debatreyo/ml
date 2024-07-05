@@ -5,5 +5,128 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
   </head>
-  <body></body>
+  <body>
+    <div class="login">
+      <h1>Student Exam Performance Indicator</h1>
+      
+      <!--FORM FOR HOLDING DROP DOWN MENUS FOR VARIOUS INPUT FEATURES-->
+      <!--Argument of `url_for()` is the function name whose route is to be returned-->
+      <form action="{{ url_for('predict_data')}}" method="post">
+       <!--INTRODUCTION HEADER-->
+        <h1>
+           <legend>Student Exam Performance Prediction</legend>
+       </h1>
+       <!-- GENDER DROP DOWN MENU-->
+       <div class="mb-3">
+           <label class="form-label">Gender</label>
+           <select class="form-control" name="gender" placeholder="Select your Gender" required>
+               <option class="placeholder" selected disabled value="">Select your Gender</option>
+               <option value="male">
+                   Male
+               </option>
+               <option value="female">
+                   Female
+               </option>
+           </select>
+       </div>
+       <!--RACE/ETHNICITY DROP DOWN MENU-->
+       <div class="mb-3">
+           <label class="form-label">Race/Ethnicity</label>
+           <select class="form-control" name="race_ethnicity" placeholder="Enter you race/ethnicity" required>
+               <option class="placeholder" selected disabled value="">Select Race/Ethnicity</option>
+               <option value="group A">
+                   Group A
+               </option>
+               <option value="group B">
+                   Group B
+               </option>
+               <option value="group C">
+                   Group C
+               </option>
+               <option value="group D">
+                   Group D
+               </option>
+               <option value="group E">
+                   Group E
+               </option>
+           </select>
+       </div>
+       <!--PARENTAL LEVEL OF EDUCATION DROP DOWN MENU-->
+       <div class="mb-3">
+           <label class="form-label">Parental Level of Education</label>
+           <select class="form-control" name="parental_level_of_education"
+               placeholder="Enter you Parent Education" required>
+               <option class="placeholder" selected disabled value="">Select Parent's Education Level</option>
+               <option value="associate's degree">
+                   Associate's degree
+               </option>
+               <option value="bachelor's degree">
+                   Bachelor's degree
+               </option>
+               <option value="high school">
+                   High school
+               </option>
+               <option value="master's degree">
+                   Master's degree
+               </option>
+               <option value="some college">
+                   Some college
+               </option>
+               <option value="some high school">
+                   Some high school
+               </option>
+           </select>
+       </div>
+       <!--LUNCH TYPE DROP DOWN MENU-->
+       <div class="mb-3">
+           <label class="form-label">Lunch Type</label>
+           <select class="form-control" name="lunch" placeholder="Enter you Lunch type" required>
+               <option class="placeholder" selected disabled value="">Select Lunch Type</option>
+               <option value="free/reduced">
+                   Free/Reduced
+               </option>
+               <option value="standard">
+                   Standard
+               </option>
+           </select>
+       </div>
+       <!--TEST PREPARATION DROP DOWN MENU-->
+       <div class="mb-3">
+           <label class="form-label">Test preparation Course</label>
+           <select class="form-control" name="test_preparation_course" placeholder="Enter your Course"
+               required>
+               <option class="placeholder" selected disabled value="">Select Test Preparation course</option>
+               <option value="none">
+                   None
+               </option>
+               <option value="completed">
+                   Completed
+               </option>
+           </select>
+       </div>
+       <!--MATH TEST SCORE-->
+       <div class="mb-3">
+           <label class="form-label">Math Score out of 100</label>
+           <input class="form-control" type="number" name="math_score"
+               placeholder="Enter your Math score" min='0' max='100' />
+       </div>
+       <!--READING TEST SCORE-->
+       <div class="mb-3">
+           <label class="form-label">Reading Score out of 100</label>
+           <input class="form-control" type="number" name="reading_score"
+               placeholder="Enter your Reading Score" min='0' max='100' />
+       </div>
+
+       <!--SUBMIT BUTTON FOR INPUT FEATURES-->
+       <div class="mb-3">
+           <input class="btn btn-primary" type="submit" value="Predict your Average Score" required />
+       </div>
+   </form>
+
+   <!--PREDICTION DISPLAY-->
+   <h2>
+      The prediction for your average score out of all tests is {{ results }}.
+   </h2>
+
+  </body>
 </html>
