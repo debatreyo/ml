@@ -20,6 +20,7 @@ def get_requirements(file_path: str) -> List[str]:
     `file_path`: (str) full file path
                 of `requirements.txt`.
     """
+    # for storing dependencies parsed out from requirements.txt
     requirements = []
 
     with open(file_path) as file_object:
@@ -28,13 +29,18 @@ def get_requirements(file_path: str) -> List[str]:
         # replace "\n" at end of each line of `requirements.txt`
         # which is present in each element of the list now
         requirements = [
-            req.replace("\n", "")
-            for req in requirements
+            req.strip()
+            if HYPHEN_E_DOT not in req
+            else ""
+            for req in requirements   
         ]
-
-        # check for presence of "-e ." in `requirements.txt` and discard
-        if HYPHEN_E_DOT in requirements:
-            requirements.remove(HYPHEN_E_DOT)
+    
+    # get rid of any blank strings
+    requirements = [
+        req
+        for req in requirements
+        if req != ""
+    ]
 
     return requirements
         
