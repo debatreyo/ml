@@ -14,7 +14,6 @@ joblib==1.4.2
 kiwisolver==1.4.5
 MarkupSafe==2.1.5
 matplotlib==3.9.0
-mlproject==0.0.1
 numpy==2.0.0
 packaging==24.1
 pandas==2.2.2
