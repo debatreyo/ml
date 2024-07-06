@@ -32,4 +32,4 @@ threadpoolctl==3.5.0
 tzdata==2024.1
 Werkzeug==3.0.3
 xgboost==2.1.0
-
+-e git+https://github.com/debatreyo/ml.git@82dc9138f0bf3e0a0579196b6e4fe131d9e5ced6#egg=mlproject
