@@ -1,0 +1,26 @@
+# Exclude Python cache files
+__pycache__/
+*.py[cod]
+
+# Exclude logs
+*.log
+
+# Exclude virtual environments
+venv/
+env/
+
+# Exclude test directories
+tests/
+test/
+
+# Exclude datasets
+data/
+
+# Exclude large files
+*.csv
+*.xlsx
+
+# Exclude other unnecessary files
+*.md
+*.txt
+.DS_Store
