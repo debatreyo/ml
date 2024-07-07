@@ -1,5 +1,5 @@
-venv
+venv/
 README.md
 .gitignore
-logs
-notebook
+logs/
+notebook/
