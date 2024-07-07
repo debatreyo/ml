@@ -8,6 +8,7 @@ __pycache__/
 # Exclude virtual environments
 venv/
 env/
+venv
 
 # Exclude test directories
 tests/
