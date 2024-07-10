@@ -7,7 +7,7 @@ from src.exception import CustomException
 from src.logger import logging
 
 # for creating web app
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect, url_for
 # for working with dataframes and arrays
 import pandas as pd
 import numpy as np
@@ -28,9 +28,12 @@ app = application
 
 
 # HOME PAGE
-@app.route("/")
+@app.route("/", methods=["GET", "POST"])
 def index():
-    return render_template("index.html")
+    if request.method == "POST":
+        return redirect(url_for("predict_data"))
+    else:
+        return render_template("index.html")
 
 # PREDICTION PAGE
 @app.route("/predict_data", methods=["GET", "POST"])
